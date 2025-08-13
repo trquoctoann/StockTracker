@@ -1,0 +1,31 @@
+# General
+.DS_Store
+Thumbs.db
+node_modules/
+dist/
+build/
+.env
+.env.*
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# Go
+bin/
+coverage.out
+
+# Next.js
+.next/
+out/
+
+# Docker
+*.log
+docker-data/

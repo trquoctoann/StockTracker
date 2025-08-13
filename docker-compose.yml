@@ -1,0 +1,73 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: ./StockTracker.API
+      dockerfile: Dockerfile
+    container_name: stocktracker-api
+    env_file:
+      - ./StockTracker.API/.env
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - stocktracker
+
+  collector:
+    build:
+      context: ./StockTracker.Collector
+      dockerfile: Dockerfile
+    container_name: stocktracker-collector
+    env_file:
+      - ./StockTracker.Collector/.env
+    depends_on:
+      - api
+      - redis
+    networks:
+      - stocktracker
+
+  ui:
+    build:
+      context: ./StockTracker.UI
+      dockerfile: Dockerfile
+    container_name: stocktracker-ui
+    env_file:
+      - ./StockTracker.UI/.env
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+    networks:
+      - stocktracker
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: stocktracker-postgres
+    environment:
+      POSTGRES_USER: stock
+      POSTGRES_PASSWORD: stock
+      POSTGRES_DB: stocktracker
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - stocktracker
+
+  redis:
+    image: redis:7-alpine
+    container_name: stocktracker-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - stocktracker
+
+volumes:
+  postgres-data:
+
+networks:
+  stocktracker:
+    driver: bridge

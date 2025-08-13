@@ -1,0 +1,6 @@
+# Development requirements
+# Install with: pip install -r requirements-dev.txt
+
+-e .[dev]
+pre-commit>=3.6.0
+bandit>=1.7.7
