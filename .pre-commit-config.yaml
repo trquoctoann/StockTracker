@@ -6,8 +6,10 @@ repos:
       - id: ruff
         args: [--fix, --exit-non-zero-on-fix]
         types: [python]
+        files: ^StockTracker\.Collector/
       - id: ruff-format
         types: [python]
+        files: ^StockTracker\.Collector/
 
   # Black - Code formatter
   - repo: https://github.com/psf/black
@@ -16,7 +18,8 @@ repos:
       - id: black
         language_version: python3.11
         args: [--line-length=100]
-
+        files: ^StockTracker\.Collector/
+        
   # MyPy - Type checker
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.10.0
@@ -24,7 +27,8 @@ repos:
       - id: mypy
         additional_dependencies: [types-redis]
         args: [--ignore-missing-imports]
-
+        files: ^StockTracker\.Collector/
+        
   # Import sorting
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.5.0
@@ -32,7 +36,8 @@ repos:
       - id: ruff
         args: [--fix, --select=I001, I002]
         types: [python]
-
+        files: ^StockTracker\.Collector/
+        
   # Trailing whitespace và end-of-file
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
@@ -44,7 +49,8 @@ repos:
       - id: check-added-large-files
       - id: check-merge-conflict
       - id: debug-statements
-
+        files: ^StockTracker\.Collector/
+        
   # Security checks
   - repo: https://github.com/PyCQA/bandit
     rev: 1.7.7
@@ -52,7 +58,8 @@ repos:
       - id: bandit
         args: [-r, src, -f, json, -o, bandit-report.json]
         exclude: tests/
-
+        files: ^StockTracker\.Collector/
+        
   # Check Python syntax
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
@@ -63,3 +70,5 @@ repos:
       - id: check-merge-conflict
       - id: check-yaml
       - id: check-toml
+        files: ^StockTracker\.Collector/
+        
